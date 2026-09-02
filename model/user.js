@@ -34,4 +34,7 @@ const userschema= new  mongoose.Schema({
 }, {
   timestamps: true
 })
+userschema.plugin(passportLocalMongoose.default || passportLocalMongoose, {
+    usernameField: "email"   
+});
 module.exports = mongoose.model("User",userschema);

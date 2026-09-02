@@ -7,6 +7,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const path = require('path');
 const ejsMate = require('ejs-mate');
+const User = require("./model/user");
+const passport = require("pas")
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
@@ -35,6 +37,36 @@ app.get("/retail",(req,res)=>{
 })
 app.get("/retail/signup",(req,res)=>{
     res.render("signup.ejs");
+})
+app.post("/retail/signup",async(req,res)=>{
+  let {name,email,password} = req.body;
+  let newUser = new User({name,email});
+  let registeruser = await User.register(newUser, password);
+  req.logIn(registeruser, (err) => {
+            if (err) {
+                return next(err);
+            }
+            console.log("signed up");
+            res.redirect("/reatil");
+        })
+})
+app.get("retail/login",(req,res)=>{
+  res.render("login.ejs");
+})
+app.post("/retail/login",passport.authenticate('local', {
+        failureRedirect: '/retail/login',
+        failureFlash: true
+    }),(req,res)=>{
+      res.redirect("/retail");
+      console.log("logged in");
+})
+app.get("/logout", (req, res, next) => {
+    req.logOut((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect("/retail");
+    })
 })
 
 
