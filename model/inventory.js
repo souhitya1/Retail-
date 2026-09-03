@@ -30,12 +30,7 @@ const inventorySchema = new mongoose.Schema({
     type: Number,
     default: 10 
   },
-  store: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Store',
-    required: true
-  },
-  addedBy: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true

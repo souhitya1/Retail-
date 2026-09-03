@@ -1,0 +1,44 @@
+<% layout("layout/boilerplate") -%>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+        
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <div class="bg-primary bg-opacity-15 text-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 54px; height: 54px; font-size: 1.5rem;">
+            🔐
+          </div>
+          <h2 class="fw-bold tracking-tight">Welcome Back</h2>
+        </div>
+
+        <!-- Form -->
+        <form method="post" action="/retail/login">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label fw-semibold small">Email address</label>
+            <input type="email" class="form-control form-control-lg fs-6" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="name@example.com" autocomplete="email" required>
+            <div id="emailHelp" class="form-text text-muted" style="font-size: 0.8rem;">We'll never share your email with anyone else.</div>
+          </div>
+          
+          <div class="mb-4">
+            <label for="exampleInputPassword1" class="form-label fw-semibold small">Password</label>
+            <input type="password" class="form-control form-control-lg fs-6" id="exampleInputPassword1" name="password" placeholder="••••••••" autocomplete="current-password" required>
+          </div>
+
+          <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary btn-lg py-2 shadow-sm">Log In</button>
+          </div>
+        </form>
+
+        <!-- Footer link -->
+        <div class="text-center mt-3 pt-3 border-top border-light">
+          <p class="text-muted small mb-0">
+            Don't have an account? <a href="/retail/signup" class="text-primary fw-semibold text-decoration-none">Sign up</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
