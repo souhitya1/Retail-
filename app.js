@@ -20,7 +20,8 @@ app.set('views', path.join(__dirname, 'views'));
 // Middleware
 app.use(express.urlencoded({ extended: true })); // to read form data (login/signup forms)
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public'))); // for bootstrap/css/js files
+app.use(express.static(path.join(__dirname, 'public')));
+ // for bootstrap/css/js files
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -138,6 +139,9 @@ app.post("/retail/inventory/:id/edit",async(req,res)=>{
             return res.redirect("/retail/inventory");
         }
     res.redirect("/retail/inventory");
+})
+app.get("/retail/dwelltime",(req,res)=>{
+    res.render("dwelltime.ejs");
 })
 
 app.listen(port,()=>{
