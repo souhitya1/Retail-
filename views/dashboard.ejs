@@ -1,0 +1,73 @@
+<% layout("layout/boilerplate") -%>
+<div class="container mt-4">
+
+    <h3 class="mb-4">
+        Billing Counters
+    </h3>
+
+    <div class="row g-4">
+
+        <% if (counters.length === 0) { %>
+
+            <div class="col-12">
+
+                <div class="alert alert-info">
+                    No billing counters configured yet.
+                </div>
+
+            </div>
+
+        <% } %>
+
+
+        <% counters.forEach(counter => { %>
+
+            <div class="col-md-4">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            <%= counter.name %>
+                        </h5>
+
+                        <hr>
+
+                        <p>
+                            <strong>Capacity:</strong>
+                            <%= counter.capacity %>
+                        </p>
+
+                        <p>
+                            <strong>Current People:</strong>
+                            <span id="people-<%= counter._id %>">
+                                0
+                            </span>
+                            /
+                            <%= counter.capacity %>
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+
+                            <span
+                                id="status-<%= counter._id %>"
+                                class="badge bg-success"
+                            >
+                                AVAILABLE
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</div>

@@ -144,8 +144,26 @@ app.post("/retail/inventory/:id/edit",async(req,res)=>{
 app.get("/retail/dwelltime",(req,res)=>{
     res.render("dwelltime.ejs");
 })
-app.get("/retail/counter",(req,res)=>{
-    res.render("counter.ejs");
+app.get("/retail/counter",isLoggedIn,async(req,res)=>{
+    try{
+    const counter = await Counter.find({owner: req.user._id});
+    res.render("counter.ejs",{counter});
+    }catch (err) {
+        console.error(err);
+        req.flash("error", "Unable to load counters");
+        res.redirect("/retail");
+    }
+
+})
+app.get("/retail/dashboard",isLoggedIn,async(req,res)=>{
+    try{
+  const counters = await Counter.find({owner: req.user._id});
+  res.render("dashboard.ejs",{counters});
+    }catch (err) {
+        console.error(err);
+        req.flash("error", "Unable to load dashboard");
+        res.redirect("/retail");
+    }
 })
 app.post("/retail/counter",isLoggedIn,async(req,res)=>{
   const{name,capacity,x1,y1,x2,y2} = req.body;

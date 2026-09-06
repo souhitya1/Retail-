@@ -1,38 +1,171 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<style>
+  :root {
+    --rn-navy: #0F1B2D;
+    --rn-navy-light: #172640;
+    --rn-amber: #E8A33D;
+    --rn-text: #DDE3EC;
+    --rn-text-dim: #8A94A6;
+  }
+
+  .rn-navbar {
+    background-color: var(--rn-navy);
+    padding: 0.85rem 1.5rem;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .rn-brand {
+    color: var(--rn-text);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .rn-brand:hover {
+    color: var(--rn-text);
+  }
+
+  .rn-brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rn-amber);
+    flex-shrink: 0;
+  }
+
+  .rn-nav-link {
+    color: var(--rn-text-dim) !important;
+    font-size: 0.925rem;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: 6px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .rn-nav-link:hover {
+    color: var(--rn-text) !important;
+    background-color: var(--rn-navy-light);
+  }
+
+  .rn-nav-link.active {
+    color: var(--rn-text) !important;
+    background-color: var(--rn-navy-light);
+  }
+
+  .rn-nav-link.disabled {
+    color: #4A5468 !important;
+  }
+
+  .rn-divider {
+    width: 1px;
+    background-color: var(--rn-navy-light);
+    margin: 0 0.5rem;
+    align-self: stretch;
+  }
+
+  .rn-toggler {
+    border: none !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .rn-toggler:focus {
+    box-shadow: 0 0 0 2px var(--rn-amber) !important;
+  }
+
+  .rn-dropdown-menu {
+    background-color: var(--rn-navy-light);
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem;
+  }
+
+  .rn-dropdown-item {
+    color: var(--rn-text-dim);
+    font-size: 0.9rem;
+    border-radius: 5px;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .rn-dropdown-item:hover {
+    background-color: var(--rn-navy);
+    color: var(--rn-text);
+  }
+
+  @media (max-width: 991px) {
+    .rn-divider {
+      display: none;
+    }
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg rn-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand rn-brand" href="/retail">
+      <span class="rn-brand-dot"></span>
+      RetailSense
+    </a>
+
+    <button class="navbar-toggler rn-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/retail">Home</a>
+          <a class="nav-link rn-nav-link active" aria-current="page" href="/retail">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/retail/signup">Signup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/retail/login">Login</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
+
+        <% if (currentUser) { %>
+          <li class="rn-divider d-none d-lg-block"></li>
+
+          <li class="nav-item">
+            <a class="nav-link rn-nav-link" href="/retail/inventory">Inventory</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link rn-nav-link" href="/retail/counter">Counter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link rn-nav-link" href="/retail/dwelltime">Dwell time</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link rn-nav-link" href="/retail/dashboard">Dashboard</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link rn-nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Reports
+            </a>
+            <ul class="dropdown-menu rn-dropdown-menu">
+              <li><a class="dropdown-item rn-dropdown-item" href="/retail/reports/daily">Daily report</a></li>
+              <li><a class="dropdown-item rn-dropdown-item" href="/retail/reports/weekly">Weekly report</a></li>
+            </ul>
+          </li>
+        <% } %>
+
       </ul>
-      <li class="nav-item">
-          <a class="nav-link" href="/retail/inventory">Inventory</a>
-        </li>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <% if (!currentUser) { %>
+          <li class="nav-item">
+            <a class="nav-link rn-nav-link" href="/retail/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm rn-nav-link" style="background-color: var(--rn-amber); color: var(--rn-navy); font-weight: 600;" href="/retail/signup">Sign up</a>
+          </li>
+        <% } %>
+        <% if (currentUser) { %>
+          <li class="nav-item">
+            <a class="nav-link rn-nav-link" href="/logout">Logout</a>
+          </li>
+        <% } %>
+      </ul>
     </div>
   </div>
 </nav>
