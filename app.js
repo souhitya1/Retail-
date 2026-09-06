@@ -12,16 +12,17 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const Inventory = require("./model/inventory");
 const {isLoggedIn} = require("./views/validation/isloggedin");
+const Counter = require("./model/counter");
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Middleware
+
 app.use(express.urlencoded({ extended: true })); // to read form data (login/signup forms)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
- // for bootstrap/css/js files
+
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -142,6 +143,27 @@ app.post("/retail/inventory/:id/edit",async(req,res)=>{
 })
 app.get("/retail/dwelltime",(req,res)=>{
     res.render("dwelltime.ejs");
+})
+app.get("/retail/counter",(req,res)=>{
+    res.render("counter.ejs");
+})
+app.post("/retail/counter",isLoggedIn,async(req,res)=>{
+  const{name,capacity,x1,y1,x2,y2} = req.body;
+  const counter =  new Counter({
+    name,
+    capacity,
+    x1,
+    y1,
+    x2,
+    y2,
+    owner: req.user._id
+  });
+  await counter.save();
+   res.json({
+            success: true,
+            message: "Counter saved successfully",
+            counter
+        });
 })
 
 app.listen(port,()=>{

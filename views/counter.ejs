@@ -1,0 +1,126 @@
+<% layout("layout/boilerplate") -%>
+ <style>
+        #cameraContainer {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        #video {
+            width: 100%;
+            display: block;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+<div class="container mt-5">
+
+    <h2 class="mb-4">Counter Management</h2>
+
+    <div class="card p-4">
+
+        <h4>Create Counter</h4>
+
+        <div class="mb-3">
+            <label class="form-label">Counter Name</label>
+
+            <input
+                type="text"
+                id="counterName"
+                class="form-control"
+                placeholder="Counter 1"
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Maximum People
+            </label>
+
+            <input
+                type="number"
+                id="counterCapacity"
+                class="form-control"
+                min="1"
+                placeholder="5"
+            >
+        </div>
+
+        <button
+            class="btn btn-primary"
+            id="startCamera"
+        >
+            Start Camera
+        </button>
+
+        <button
+            class="btn btn-success"
+            id="drawZone"
+        >
+            Draw Counter Zone
+        </button>
+
+    </div>
+
+
+    <!-- CAMERA -->
+
+    <div class="card p-3 mb-4">
+
+        <h4>Counter Camera</h4>
+
+        <div id="cameraContainer">
+
+            <video
+                id="video"
+                autoplay
+                playsinline
+                muted
+            ></video>
+
+            <canvas id="canvas"></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div class="card p-4">
+
+        <h4>Counter Status</h4>
+
+        <h5>
+            Counter:
+            <span id="displayCounterName">-</span>
+        </h5>
+
+        <h5>
+            People:
+            <span id="currentPeople">0</span>
+            /
+            <span id="displayCapacity">0</span>
+        </h5>
+
+        <h5>
+            Status:
+            <span id="counterStatus">Not Started</span>
+        </h5>
+
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
+<!-- COCO-SSD -->
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+<script src="/js/counter.js"></script>
