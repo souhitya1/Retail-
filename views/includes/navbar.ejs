@@ -1,171 +1,319 @@
 <style>
-  :root {
-    --rn-navy: #0F1B2D;
-    --rn-navy-light: #172640;
-    --rn-amber: #E8A33D;
-    --rn-text: #DDE3EC;
-    --rn-text-dim: #8A94A6;
-  }
+    :root {
+        --rn-navy: #0F1B2D;
+        --rn-navy-light: #172640;
+        --rn-amber: #E8A33D;
+        --rn-text: #DDE3EC;
+        --rn-text-dim: #8A94A6;
+    }
 
-  .rn-navbar {
-    background-color: var(--rn-navy);
-    padding: 0.85rem 1.5rem;
-    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
-  }
+    .rn-navbar {
+        background-color: var(--rn-navy);
+        padding: 0.85rem 1.5rem;
+        font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+.rn-logo-box {
+    width: 42px;
+    height: 42px;
 
-  .rn-brand {
-    color: var(--rn-text);
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-  }
+    justify-content: center;
 
-  .rn-brand:hover {
-    color: var(--rn-text);
-  }
+    background: #38BDF8;
 
-  .rn-brand-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--rn-amber);
-    flex-shrink: 0;
-  }
+    border-radius: 11px;
 
-  .rn-nav-link {
-    color: var(--rn-text-dim) !important;
-    font-size: 0.925rem;
-    font-weight: 500;
-    padding: 0.5rem 0.9rem !important;
-    border-radius: 6px;
-    transition: color 0.15s ease, background-color 0.15s ease;
-  }
+    color: #07111F;
 
-  .rn-nav-link:hover {
-    color: var(--rn-text) !important;
-    background-color: var(--rn-navy-light);
-  }
+    font-size: 25px;
+    font-weight: 800;
 
-  .rn-nav-link.active {
-    color: var(--rn-text) !important;
-    background-color: var(--rn-navy-light);
-  }
+    line-height: 1;
+}
+    /* =========================
+       RETAILAI LOGO
+    ========================= */
 
-  .rn-nav-link.disabled {
-    color: #4A5468 !important;
-  }
+    .rn-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-  .rn-divider {
-    width: 1px;
-    background-color: var(--rn-navy-light);
-    margin: 0 0.5rem;
-    align-self: stretch;
-  }
+    text-decoration: none;
 
-  .rn-toggler {
-    border: none !important;
-    padding: 0.25rem 0.5rem !important;
-  }
+    color: #ffffff;
 
-  .rn-toggler:focus {
-    box-shadow: 0 0 0 2px var(--rn-amber) !important;
-  }
+    font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
 
-  .rn-dropdown-menu {
-    background-color: var(--rn-navy-light);
-    border: none;
-    border-radius: 8px;
-    padding: 0.4rem;
-  }
+    transition: 0.2s ease;
+}
 
-  .rn-dropdown-item {
-    color: var(--rn-text-dim);
-    font-size: 0.9rem;
-    border-radius: 5px;
-    padding: 0.45rem 0.75rem;
-  }
+    
+.rn-brand:hover {
+    color: #FFFFFF;
+}
+.rn-brand:hover .rn-logo-box {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(56, 189, 248, 0.25);
+}
 
-  .rn-dropdown-item:hover {
-    background-color: var(--rn-navy);
-    color: var(--rn-text);
-  }
-
-  @media (max-width: 991px) {
-    .rn-divider {
-      display: none;
+    .rn-brand span {
+        color: #efe8dd;
     }
-  }
+
+    /* =========================
+       NAV LINKS
+    ========================= */
+
+    .rn-nav-link {
+        color: var(--rn-text-dim) !important;
+        font-size: 0.925rem;
+        font-weight: 500;
+        padding: 0.5rem 0.9rem !important;
+        border-radius: 6px;
+        transition:
+            color 0.15s ease,
+            background-color 0.15s ease;
+    }
+    .rn-logo-text {
+    font-size: 24px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.8px;
+
+    color: #0e0e0e;
+}
+
+
+/* AI */
+
+.rn-logo-text span {
+    color: #38BDF8;
+}
+
+
+    .rn-nav-link:hover {
+        color: var(--rn-text) !important;
+        background-color: var(--rn-navy-light);
+    }
+
+    .rn-nav-link.active {
+        color: var(--rn-text) !important;
+        background-color: var(--rn-navy-light);
+    }
+
+    /* =========================
+       DIVIDER
+    ========================= */
+
+    .rn-divider {
+        width: 1px;
+        background-color: var(--rn-navy-light);
+        margin: 0 0.5rem;
+        align-self: stretch;
+    }
+
+    /* =========================
+       MOBILE TOGGLER
+    ========================= */
+
+    .rn-toggler {
+        border: none !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    .rn-toggler:focus {
+        box-shadow: 0 0 0 2px var(--rn-amber) !important;
+    }
+
+    .rn-toggler .navbar-toggler-icon {
+        filter: invert(1);
+    }
+
+    /* =========================
+       SIGN UP
+    ========================= */
+
+    .rn-signup {
+        background-color: var(--rn-amber);
+        color: var(--rn-navy) !important;
+        font-weight: 600;
+        border-radius: 6px;
+        padding: 0.5rem 0.9rem !important;
+    }
+
+    .rn-signup:hover {
+        background-color: #F0B45A;
+        color: var(--rn-navy) !important;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 991px) {
+
+        .rn-divider {
+            display: none;
+        }
+
+        .rn-nav-link {
+            margin-top: 3px;
+        }
+    }
 </style>
 
+
 <nav class="navbar navbar-expand-lg rn-navbar">
-  <div class="container-fluid">
-    <a class="navbar-brand rn-brand" href="/retail">
-      <span class="rn-brand-dot"></span>
-      RetailSense
-    </a>
 
-    <button class="navbar-toggler rn-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+        <a class="navbar-brand rn-brand" href="/retail">
+    <span class="rn-logo-box">R</span>
 
-        <li class="nav-item">
-          <a class="nav-link rn-nav-link active" aria-current="page" href="/retail">Home</a>
-        </li>
+    <span class="rn-logo-text">
+        Retail<span>AI</span>
+    </span>
+   </a>
 
-        <% if (currentUser) { %>
-          <li class="rn-divider d-none d-lg-block"></li>
 
-          <li class="nav-item">
-            <a class="nav-link rn-nav-link" href="/retail/inventory">Inventory</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link rn-nav-link" href="/retail/counter">Counter</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link rn-nav-link" href="/retail/dwelltime">Dwell time</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link rn-nav-link" href="/retail/dashboard">Dashboard</a>
-          </li>
+        <!-- Mobile Button -->
+        <button
+            class="navbar-toggler rn-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
 
-          <li class="nav-item dropdown">
-            <a class="nav-link rn-nav-link dropdown-toggle" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Reports
-            </a>
-            <ul class="dropdown-menu rn-dropdown-menu">
-              <li><a class="dropdown-item rn-dropdown-item" href="/retail/reports/daily">Daily report</a></li>
-              <li><a class="dropdown-item rn-dropdown-item" href="/retail/reports/weekly">Weekly report</a></li>
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- Navigation -->
+        <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+
+                <!-- Home -->
+                <li class="nav-item">
+                    <a
+                        class="nav-link rn-nav-link active"
+                        href="/retail">
+                        Home
+                    </a>
+                </li>
+
+
+                <% if (currentUser) { %>
+
+                    <li class="rn-divider d-none d-lg-block"></li>
+
+                    <!-- Inventory -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link"
+                            href="/retail/inventory">
+                            Inventory
+                        </a>
+                    </li>
+
+
+                    <!-- Counter -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link"
+                            href="/retail/counter">
+                            Counter
+                        </a>
+                    </li>
+
+
+                    <!-- Dwell Time -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link"
+                            href="/retail/dwelltime">
+                            Dwell time
+                        </a>
+                    </li>
+
+
+                    <!-- Dashboard -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link"
+                            href="/retail/dashboard">
+                            Dashboard
+                        </a>
+                    </li>
+
+
+                    <!-- Plans -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link"
+                            href="/retail/plans">
+                            Plan
+                        </a>
+                    </li>
+
+                <% } %>
+
             </ul>
-          </li>
-        <% } %>
 
-      </ul>
 
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <% if (!currentUser) { %>
-          <li class="nav-item">
-            <a class="nav-link rn-nav-link" href="/retail/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-sm rn-nav-link" style="background-color: var(--rn-amber); color: var(--rn-navy); font-weight: 600;" href="/retail/signup">Sign up</a>
-          </li>
-        <% } %>
-        <% if (currentUser) { %>
-          <li class="nav-item">
-            <a class="nav-link rn-nav-link" href="/logout">Logout</a>
-          </li>
-        <% } %>
-      </ul>
+            <!-- Right Side -->
+            <ul class="navbar-nav mb-2 mb-lg-0">
+
+                <% if (!currentUser) { %>
+
+                    <!-- Login -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link"
+                            href="/retail/login">
+                            Login
+                        </a>
+                    </li>
+
+
+                    <!-- Signup -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link rn-signup"
+                            href="/retail/signup">
+                            Sign up
+                        </a>
+                    </li>
+
+                <% } %>
+
+
+                <% if (currentUser) { %>
+
+                    <!-- Logout -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link rn-nav-link"
+                            href="/logout">
+                            Logout
+                        </a>
+                    </li>
+
+                <% } %>
+
+            </ul>
+
+        </div>
+
     </div>
-  </div>
+
 </nav>

@@ -184,6 +184,9 @@ app.post("/retail/counter",isLoggedIn,async(req,res)=>{
             counter
         });
 })
+app.get("/retail/plans",(req,res)=>{
+    res.render("plan.ejs");
+})
 
 app.listen(port,()=>{
     console.log("app is listening");
