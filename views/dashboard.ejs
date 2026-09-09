@@ -1,18 +1,164 @@
 <% layout("layout/boilerplate") -%>
-<div class="container mt-4">
 
-    <h3 class="mb-4">
-        Billing Counters
-    </h3>
+<div class="container mt-4 mb-5">
 
-    <div class="row g-4">
+    <!-- ================= DASHBOARD HEADER ================= -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold mb-1">
+                Retail Dashboard
+            </h2>
+
+            <p class="text-muted mb-0">
+                Real-time overview of your store
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- ================= SUMMARY CARDS ================= -->
+
+    <div class="row g-4 mb-5">
+
+        <!-- Visitors -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-2">
+                        Total Visitors
+                    </p>
+
+                    <h2 class="fw-bold">
+                        0
+                    </h2>
+
+                    <small class="text-success">
+                        ● Live
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Inventory -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-2">
+                        Inventory Items
+                    </p>
+
+                    <h2 class="fw-bold">
+                        <%= items.length %>
+                    </h2>
+
+                    <small class="text-muted">
+                        Products in store
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Low Stock -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-2">
+                        Low Stock
+                    </p>
+
+                    <h2 class="fw-bold text-warning">
+
+                        <%= items.filter(item => item.quantity <= 5).length %>
+
+                    </h2>
+
+                    <small class="text-muted">
+                        Needs attention
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Counters -->
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body">
+
+                    <p class="text-muted mb-2">
+                        Billing Counters
+                    </p>
+
+                    <h2 class="fw-bold">
+                        <%= counters.length %>
+                    </h2>
+
+                    <small class="text-muted">
+                        Configured counters
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- BILLING COUNTERS -->
+    <!-- ================================================= -->
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h3 class="fw-bold">
+            Billing Counters
+        </h3>
+
+    </div>
+
+
+    <div class="row g-4 mb-5">
 
         <% if (counters.length === 0) { %>
 
             <div class="col-12">
 
                 <div class="alert alert-info">
+
                     No billing counters configured yet.
+
                 </div>
 
             </div>
@@ -24,32 +170,17 @@
 
             <div class="col-md-4">
 
-                <div class="card shadow-sm border-0">
+                <div class="card shadow-sm border-0 h-100">
 
                     <div class="card-body">
 
-                        <h5 class="card-title">
-                            <%= counter.name %>
-                        </h5>
+                        <div class="d-flex justify-content-between">
 
-                        <hr>
+                            <h5 class="card-title fw-bold">
 
-                        <p>
-                            <strong>Capacity:</strong>
-                            <%= counter.capacity %>
-                        </p>
+                                <%= counter.name %>
 
-                        <p>
-                            <strong>Current People:</strong>
-                            <span id="people-<%= counter._id %>">
-                                0
-                            </span>
-                            /
-                            <%= counter.capacity %>
-                        </p>
-
-                        <p>
-                            <strong>Status:</strong>
+                            </h5>
 
                             <span
                                 id="status-<%= counter._id %>"
@@ -58,7 +189,41 @@
                                 AVAILABLE
                             </span>
 
-                        </p>
+                        </div>
+
+                        <hr>
+
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span class="text-muted">
+                                Capacity
+                            </span>
+
+                            <strong>
+                                <%= counter.capacity %>
+                            </strong>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between">
+
+                            <span class="text-muted">
+                                Current People
+                            </span>
+
+                            <strong>
+
+                                <span id="people-<%= counter._id %>">
+                                    0
+                                </span>
+
+                                / <%= counter.capacity %>
+
+                            </strong>
+
+                        </div>
 
                     </div>
 
@@ -67,6 +232,307 @@
             </div>
 
         <% }) %>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- INVENTORY -->
+    <!-- ================================================= -->
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h3 class="fw-bold">
+            Current Inventory
+        </h3>
+
+        <a
+            href="/retail/inventory"
+            class="btn btn-outline-primary btn-sm"
+        >
+            Manage Inventory
+        </a>
+
+    </div>
+
+
+    <div class="card shadow-sm border-0 mb-5">
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th class="ps-4">
+                                Product
+                            </th>
+
+                            <th>
+                                Quantity
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <% if (items.length === 0) { %>
+
+                            <tr>
+
+                                <td
+                                    colspan="3"
+                                    class="text-center py-4 text-muted"
+                                >
+                                    No inventory items found.
+                                </td>
+
+                            </tr>
+
+                        <% } %>
+
+
+                        <% items.forEach(item => { %>
+
+                            <tr>
+
+                                <td class="ps-4 fw-semibold">
+
+                                    <%= item.name %>
+
+                                </td>
+
+
+                                <td>
+
+                                    <%= item.quantity %>
+
+                                </td>
+
+
+                                <td>
+
+                                    <% if (item.quantity <= 5) { %>
+
+                                        <span class="badge bg-warning text-dark">
+                                            LOW STOCK
+                                        </span>
+
+                                    <% } else { %>
+
+                                        <span class="badge bg-success">
+                                            IN STOCK
+                                        </span>
+
+                                    <% } %>
+
+                                </td>
+
+                            </tr>
+
+                        <% }) %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- SECTION VISITORS -->
+    <!-- ================================================= -->
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+
+            <h3 class="fw-bold mb-1">
+                Section Visitor Analytics
+            </h3>
+
+            <p class="text-muted">
+                Visitors detected in different store sections
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- Coke -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+                        Coca-Cola Section
+                    </h5>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+
+                        <span class="text-muted">
+                            Visitors
+                        </span>
+
+                        <strong id="cokeVisitors">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="d-flex justify-content-between mt-2">
+
+                        <span class="text-muted">
+                            Current Dwell
+                        </span>
+
+                        <strong>
+
+                            <span id="cokeDwell">
+                                0
+                            </span>
+
+                            sec
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Fanta -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+                        Fanta Section
+                    </h5>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+
+                        <span class="text-muted">
+                            Visitors
+                        </span>
+
+                        <strong id="fantaVisitors">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="d-flex justify-content-between mt-2">
+
+                        <span class="text-muted">
+                            Current Dwell
+                        </span>
+
+                        <strong>
+
+                            <span id="fantaDwell">
+                                0
+                            </span>
+
+                            sec
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Snacks -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+                        Snacks Section
+                    </h5>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+
+                        <span class="text-muted">
+                            Visitors
+                        </span>
+
+                        <strong id="snacksVisitors">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="d-flex justify-content-between mt-2">
+
+                        <span class="text-muted">
+                            Current Dwell
+                        </span>
+
+                        <strong>
+
+                            <span id="snacksDwell">
+                                0
+                            </span>
+
+                            sec
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 

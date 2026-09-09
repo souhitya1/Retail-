@@ -158,7 +158,8 @@ app.get("/retail/counter",isLoggedIn,async(req,res)=>{
 app.get("/retail/dashboard",isLoggedIn,async(req,res)=>{
     try{
   const counters = await Counter.find({owner: req.user._id});
-  res.render("dashboard.ejs",{counters});
+  const items = await Inventory.find({owner: req.user._id});
+  res.render("dashboard.ejs",{counters,items});
     }catch (err) {
         console.error(err);
         req.flash("error", "Unable to load dashboard");
