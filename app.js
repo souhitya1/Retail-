@@ -146,8 +146,8 @@ app.get("/retail/dwelltime",(req,res)=>{
 })
 app.get("/retail/counter",isLoggedIn,async(req,res)=>{
     try{
-    const counter = await Counter.find({owner: req.user._id});
-    res.render("counter.ejs",{counter});
+    const counters = await Counter.find({owner: req.user._id});
+    res.render("counter.ejs",{counters});
     }catch (err) {
         console.error(err);
         req.flash("error", "Unable to load counters");

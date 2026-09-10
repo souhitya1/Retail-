@@ -487,17 +487,20 @@ async function detectPeople() {
 
         if (
             capacity > 0 &&
-            count >= capacity
+            count == capacity
         ) {
 
             counterStatus.innerText =
                 "FULL";
 
-        } else {
+        } else if(count>capacity){
 
             counterStatus.innerText =
-                "AVAILABLE";
+                `OVERCROWDED`;
 
+        }else{
+            counterStatus.innerText=
+            "AVAILABLE"
         }
 
 
